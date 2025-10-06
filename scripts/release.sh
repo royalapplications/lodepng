@@ -30,7 +30,7 @@ pushd "${BUILD_DIR}"
 
 echo "Creating ${BUILD_DIR}/lodepng.tar.gz"
 rm -f "lodepng.tar.gz"
-tar czf "lodepng.tar.gz" macosx
+tar czf "lodepng.tar.gz" iphoneos iphonesimulator macosx
 
 echo "Creating ${BUILD_DIR}/LodePNG.xcframework.tar.gz"
 rm -f "LodePNG.xcframework.tar.gz"
