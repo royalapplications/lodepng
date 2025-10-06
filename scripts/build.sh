@@ -85,7 +85,9 @@ build_macos() {
   local object_file_name="liblodepng.o"
   local library_file_name="liblodepng.a"
 
-  clang -c "${SRC_DIR}/lodepng.cpp" \
+  mv "${SRC_DIR}/lodepng.cpp" "${SRC_DIR}/lodepng.c"
+
+  clang -c "${SRC_DIR}/lodepng.c" \
     -o "arm64_${object_file_name}" \
     -DNDEBUG \
     -O3 \
@@ -99,13 +101,15 @@ build_macos() {
 
   strip -x "arm64_${library_file_name}"
 
-  clang -c "${SRC_DIR}/lodepng.cpp" \
+  clang -c "${SRC_DIR}/lodepng.c" \
     -o "x86_64_${object_file_name}" \
     -DNDEBUG \
     -O3 \
     -arch x86_64 \
     -isysroot "${sdk_root}" \
     "${additional_c_flags}"
+
+  mv "${SRC_DIR}/lodepng.c" "${SRC_DIR}/lodepng.cpp"
 
   ar rcs \
     "x86_64_${library_file_name}" \
@@ -136,13 +140,17 @@ build_ios() {
   local object_file_name="liblodepng.o"
   local library_file_name="liblodepng.a"
 
-  clang -c "${SRC_DIR}/lodepng.cpp" \
+  mv "${SRC_DIR}/lodepng.cpp" "${SRC_DIR}/lodepng.c"
+
+  clang -c "${SRC_DIR}/lodepng.c" \
     -o "${object_file_name}" \
     -DNDEBUG \
     -O3 \
     -arch arm64 \
     -isysroot "${sdk_root}" \
     "${additional_c_flags}"
+
+  mv "${SRC_DIR}/lodepng.c" "${SRC_DIR}/lodepng.cpp"
 
   ar rcs \
     "${library_file_name}" \
@@ -168,7 +176,9 @@ build_ios_sim() {
   local object_file_name="liblodepng.o"
   local library_file_name="liblodepng.a"
 
-  clang -c "${SRC_DIR}/lodepng.cpp" \
+  mv "${SRC_DIR}/lodepng.cpp" "${SRC_DIR}/lodepng.c"
+
+  clang -c "${SRC_DIR}/lodepng.c" \
     -o "arm64_${object_file_name}" \
     -DNDEBUG \
     -O3 \
@@ -182,13 +192,15 @@ build_ios_sim() {
 
   strip -x "arm64_${library_file_name}"
 
-  clang -c "${SRC_DIR}/lodepng.cpp" \
+  clang -c "${SRC_DIR}/lodepng.c" \
     -o "x86_64_${object_file_name}" \
     -DNDEBUG \
     -O3 \
     -arch x86_64 \
     -isysroot "${sdk_root}" \
     "${additional_c_flags}"
+
+  mv "${SRC_DIR}/lodepng.c" "${SRC_DIR}/lodepng.cpp"
 
   ar rcs \
     "x86_64_${library_file_name}" \
