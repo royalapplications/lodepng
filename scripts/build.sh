@@ -22,6 +22,8 @@ if [[ -z $LODEPNG_VERSION ]]; then
   exit 1
 fi
 
+LODEPNG_VERSION="${LODEPNG_VERSION::7}"
+
 echo "lodepng Version (Commit Hash): ${LODEPNG_VERSION}"
 
 SRC_DIR="${SCRIPT_PATH}/../Submodules/lodepng"

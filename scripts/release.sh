@@ -11,9 +11,12 @@ popd
 
 if [[ -z $LODEPNG_VERSION ]]; then
   echo "LODEPNG_VERSION not set; aborting"
-  
   exit 1
 fi
+
+LODEPNG_VERSION="${LODEPNG_VERSION::7}"
+
+echo "lodepng Version (Commit Hash): ${LODEPNG_VERSION}"
 
 BUILD_DIR="${SCRIPT_PATH}/../build/lodepng-build-${LODEPNG_VERSION}"
 echo "Build Path: ${BUILD_DIR}"

@@ -25,8 +25,8 @@ jobs:
     name: Build
     runs-on: macos-14
 
-    env: # use tag version, if available, falling back to 344b4b442d0de0787a999724dd6569461a00c92c
-      LODEPNG_VERSION: "${{ startsWith(github.ref, 'refs/tags/') && github.ref_name || '344b4b442d0de0787a999724dd6569461a00c92c' }}"
+    env: # use tag version, if available, falling back to 344b4b4
+      LODEPNG_VERSION: "${{ startsWith(github.ref, 'refs/tags/') && github.ref_name || '344b4b4' }}"
       PUBLISH_RELEASE: "${{ startsWith(github.ref, 'refs/tags/') && '1' || '0' }}"
 
     steps:
