@@ -5,12 +5,17 @@ set -e
 SCRIPT_PATH="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 echo "Script Path: ${SCRIPT_PATH}"
 
+pushd "${SCRIPT_PATH}/.."
+LODEPNG_VERSION=`git rev-parse HEAD:Submodules/lodepng`
+popd
+
 if [[ -z $LODEPNG_VERSION ]]; then
   echo "LODEPNG_VERSION not set; aborting"
+  
   exit 1
 fi
 
-BUILD_DIR="${SCRIPT_PATH}/../build/lodepng-${LODEPNG_VERSION}"
+BUILD_DIR="${SCRIPT_PATH}/../build/lodepng-build-${LODEPNG_VERSION}"
 echo "Build Path: ${BUILD_DIR}"
 
 if [[ ! -d "${BUILD_DIR}" ]]; then

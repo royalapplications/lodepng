@@ -13,8 +13,19 @@ BUILD_ROOT_DIR="${SCRIPT_PATH}/../build"
 echo "Build Path: ${BUILD_ROOT_DIR}"
 mkdir -p "${BUILD_ROOT_DIR}"
 
+pushd "${SCRIPT_PATH}/.."
+LODEPNG_VERSION=`git rev-parse HEAD:Submodules/lodepng`
+popd
+
+if [[ -z $LODEPNG_VERSION ]]; then
+  echo "LODEPNG_VERSION not set; aborting"
+  exit 1
+fi
+
+echo "lodepng Version (Commit Hash): ${LODEPNG_VERSION}"
+
 SRC_DIR="${SCRIPT_PATH}/../Submodules/lodepng"
-BUILD_DIR="${BUILD_ROOT_DIR}/lodepng-build"
+BUILD_DIR="${BUILD_ROOT_DIR}/lodepng-build-${LODEPNG_VERSION}"
 
 if [[ -d "${BUILD_DIR}" ]]; then
   rm -r "${BUILD_DIR}"
